@@ -10,18 +10,44 @@ def ECB(message,block_size,key):
     message += ' '
     print(len(message))
     message = bytes(message,'utf-8')
-    result = ""
     print(len(key))
     cipher = DES.new(key, DES.MODE_ECB)
     msg = cipher.encrypt(message)
     return msg
 
 def CBC(message,block_size,key):
-    return 1
+    key = bytes(key,'utf-8')
+    print(len(message))
+    message += ' '
+    print(len(message))
+    message = bytes(message,'utf-8')
+    print(len(key))
+    cipher = DES.new(key, DES.MODE_CBC)
+    msg = cipher.encrypt(message)
+    return msg
+
+
 def CFB(message,block_size,key):
-    return 1
+    key = bytes(key,'utf-8')
+    print(len(message))
+    message += ' '
+    print(len(message))
+    message = bytes(message,'utf-8')
+    print(len(key))
+    cipher = DES.new(key, DES.MODE_CFB)
+    msg = cipher.encrypt(message)
+    return msg
+
 def CTR(message,block_size,key):
-    return 1
+    key = bytes(key,'utf-8')
+    print(len(message))
+    message += ' '
+    print(len(message))
+    message = bytes(message,'utf-8')
+    print(len(key))
+    cipher = DES.new(key, DES.MODE_CTR)
+    msg = cipher.encrypt(message)
+    return msg
 
 context = zmq.Context()
 socket = context.socket(zmq.REP)
@@ -51,6 +77,7 @@ elif(mode == "CTR"):
     encrypted_message = ECB(message,block_size,key)
 
 print(encrypted_message)
+
 
 
 
