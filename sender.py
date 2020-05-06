@@ -120,6 +120,7 @@ while True:
         i += 1
     
     else:
+        start = time.time()
         if(mode == "ECB"):
             encrypted_message = ECB(message,key)
         elif(mode == "CBC"):
@@ -131,12 +132,14 @@ while True:
         else:
             print("Mode not supported")
             break
+        end = time.time()
         if (i == 1):
             cobj.update(encrypted_message)
             print(cobj.hexdigest())
             socket.send(bytes(cobj.hexdigest(),'utf-8'))
         if (i == 2):
             socket.send(encrypted_message)
+            print("TIME ELAPSED: ",end - start)
         i += 1
         if (i == 3):
             break
